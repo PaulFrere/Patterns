@@ -27,6 +27,5 @@ public class Main {
         IciciBank iciciBank = new IciciBank(new CurrentAccount());
         Account current = (Account) iciciBank.openAccount();
         current.accountType();
-
     }
 }
