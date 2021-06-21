@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Cash {
 
-    Map<Integer,People> cash = new HashMap<Integer, People>();
+    Map<Integer,People> cash = new HashMap<>();
 
     public void addToCash(People people){
         cash.put(people.getId(), people );

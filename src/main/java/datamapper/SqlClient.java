@@ -6,7 +6,7 @@ public class SqlClient {
 
     private static Connection connection;
     private static Statement statement;
-    private Cash cash;
+    private final Cash cash;
 
     public SqlClient(Cash cash) {
         this.cash = cash;
@@ -29,12 +29,14 @@ public class SqlClient {
         }else {
             String query = String.format("select * from people where id='%s'", id);
             try (ResultSet set = statement.executeQuery(query)) {
-                while (set.next()) {
-                    People people = new People();
-                    people.setId(set.getInt(1));
-                    people.setName(set.getString(2));
-                    people.setAge(set.getInt(3));
-                    return people;
+                if (set.next()) {
+                    do {
+                        People people = new People();
+                        people.setId(set.getInt(1));
+                        people.setName(set.getString(2));
+                        people.setAge(set.getInt(3));
+                        return people;
+                    } while (set.next());
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
