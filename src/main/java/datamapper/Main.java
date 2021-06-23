@@ -6,23 +6,9 @@ public class Main {
 
         Cash cashPeople = new Cash();
         SqlClient sqlClient = new SqlClient(cashPeople);
+        Controller Controller= new Controller(sqlClient);
 
-        sqlClient.connect();
+        System.out.println(Controller.getNamePeopleById(2));
 
-        People people1 = sqlClient.findById(2);
-
-        System.out.println(people1.getId());
-        System.out.println(people1.getName());
-        System.out.println(people1.getAge());
-
-        cashPeople.addToCash(people1);
-
-        People people2 = sqlClient.findById(3);
-        System.out.println(people2.getId());
-        System.out.println(people2.getName());
-        System.out.println(people2.getAge());
-
-
-        sqlClient.disconnect();
     }
 }
